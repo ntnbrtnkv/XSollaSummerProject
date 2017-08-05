@@ -1,0 +1,65 @@
+.drug-cards {
+    display: flex;
+    // flex-direction: row;
+    flex-flow: row wrap;
+    align-items: stretch;
+    $side-space: 10px;
+    // height: 1012px;
+
+    &__card {
+        border: 1px solid #86550B;
+        
+        display: flex;
+        flex-direction: column;
+        max-width: 256px;
+        min-width: 256px;
+        margin: 1px;
+    }
+
+    &__details {
+        text-decoration: none;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 1 auto;
+        background-color: #E7BC7D;
+        transition: background ease-in-out 250ms;
+
+        &:hover {
+            background-color: #E7AD56;
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        cursor: default;
+        flex: 0 1 auto;
+    }
+
+    &__name {
+        padding: 0px $side-space + 10px;
+    }
+
+    &__delete {
+        display: inline-block;
+        text-align: center;
+        width: 40px;
+        height: 25px;
+        
+        &:hover {
+            background-color: red;
+        }
+    }
+
+    &__description {
+        margin: $side-space $side-space 0px $side-space;
+    }
+
+    &__price {
+        margin: $side-space;
+        font-size: 26px;
+        text-align: right;
+    }
+}
