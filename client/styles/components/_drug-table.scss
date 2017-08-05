@@ -48,5 +48,12 @@
         padding: 7px;
         // text-align: left;
     }
+
+    &__delete-button {
+        border: none;
+        padding: 6px 10px;
+        text-align: center;
+        background-color: red;
+    }
 }
 
