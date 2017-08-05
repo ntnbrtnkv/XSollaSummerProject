@@ -1,0 +1,50 @@
+.drug-table {
+    // border: 1px solid rgba(black, 0.1);
+    border-collapse: collapse;
+    display: table;
+    margin: 7px 0px;
+    width: 100%;
+
+    &_invisible {
+        display: none;
+    }
+
+    &__row {
+        display: table-row;
+        // align-content: center;
+        // text-align: center;
+        // display: flex;
+        // justify-content: space-around;
+        
+        &:nth-child(2n+1) {
+            background-color: white;
+        }
+
+        &:nth-child(2n) {
+            background-color: rgba(#E7BC7D, 0.3);
+        }
+
+        &:hover {
+            background-color: #E7AD56;
+            cursor: pointer;
+        }
+    }
+
+    &__row_header {
+        background-color: #CE8922;
+        display: table-row;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__cell {
+        border: 1px solid #86550B;
+        // align-content: center;
+        vertical-align: middle;
+        display: table-cell;
+        padding: 7px;
+        // text-align: left;
+    }
+}
+

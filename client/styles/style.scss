@@ -1,5 +1,7 @@
+@import "components/drug-table";
 @import "components/elements-list";
 @import "components/search-panel";
+@import "components/page";
 
 * {
     padding: 0;
@@ -12,8 +14,4 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.6;
-}
-
-.app {
-    margin: 20px 40px;
 }
