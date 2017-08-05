@@ -10,21 +10,23 @@
         <h1 class="page__title">Pharmacy</h1>
         
         <div class="search-panel">
+          <div class="search-panel__filler"></div>
+
           <input class="search-panel__input"
                 type="search"
                 placeholder="Поиск лекарства">
 
-          <div class="drug-table">
-            <div class="drug-table__row_header">
+          <div id="search-panel__results" class="drug-table search-panel__results">
+            <!-- <div class="drug-table__row_header">
               <div class="drug-table__cell">Название</div>
               <div class="drug-table__cell">Форма</div>
-              <div class="drug-table__cell">Предельная цена</div>
-            </div>
+              <div class="drug-table__cell">Предельная цена<br>(без НДС), &#8381</div>
+            </div> -->
 
             <div class="drug-table__row">
               <div class="drug-table__cell">Аксосеф</div>
               <div class="drug-table__cell">таблетки покрытые пленочной оболочкой 250 мг, 10 шт. – упаковки ячейковые контурные (2)  – пачки картонные</div>
-              <div class="drug-table__cell">Предельная цена &#8381</div>
+              <div class="drug-table__cell">Предельная цена</div>
             </div>
 
             <div class="drug-table__row">
@@ -39,8 +41,37 @@
               <div class="drug-table__cell">Преqefдеqefqefqefльная цена</div>
             </div>
           </div>
-
         </div>
+
+        <div id="fav-drugs" class="fav-drugs">
+            <h2 class="fav-drugs__title">Избранные препараты</h2>
+
+            <div class="drug-table">
+              <div class="drug-table__row_header">
+                <div class="drug-table__cell">Название</div>
+                <div class="drug-table__cell">Форма</div>
+                <div class="drug-table__cell">Предельная цена<br>(без НДС), &#8381</div>
+              </div>
+
+              <div class="drug-table__row">
+                <div class="drug-table__cell">Аксосеф</div>
+                <div class="drug-table__cell">таблетки покрытые пленочной оболочкой 250 мг, 10 шт. – упаковки ячейковые контурные (2)  – пачки картонные</div>
+                <div class="drug-table__cell">Предельная цена</div>
+              </div>
+
+              <div class="drug-table__row">
+                <div class="drug-table__cell">Наadfзвание</div>
+                <div class="drug-table__cell">Фоqefрма</div>
+                <div class="drug-table__cell">Преqefдельная цена</div>
+              </div>
+
+              <div class="drug-table__row">
+                <div class="drug-table__cell">Наadefqefqfзвание</div>
+                <div class="drug-table__cell">Фоqefqefqefqefqefрма</div>
+                <div class="drug-table__cell">Преqefдеqefqefqefльная цена</div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </body>

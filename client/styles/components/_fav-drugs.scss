@@ -1,0 +1,13 @@
+.fav-drugs {
+    margin-top: 21px;
+
+    &__title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    &_disabled {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+}
