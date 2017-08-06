@@ -1,11 +1,25 @@
 .search-panel {
     position: relative;
+    margin: 0px 0px;
+
+    &__icon {
+        margin: 4px 4px 4px 8px;
+        flex: 0 1 auto;
+    }
+
+    &__search-line {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        box-shadow: 0px 0px 2px;
+        width: 100%;
+    }
 
     &__input {
-        border: 1px solid #86550B;
+        border: 0px solid #86550B;
         font-size: 16px;
         padding: 7px 8px;
-        width: 100%;
+        flex: 1 1 auto;
     }
 
     &__results {

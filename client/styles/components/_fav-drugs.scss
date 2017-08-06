@@ -1,5 +1,7 @@
 .fav-drugs {
     margin-top: 21px;
+    background-color: #E7BC7D;
+    box-shadow: 0px 0px 2px;
 
     &__title {
         font-size: 26px;
@@ -7,7 +9,6 @@
     }
 
     &_disabled {
-        pointer-events: none;
-        opacity: 0.4;
+        display: none;
     }
 }

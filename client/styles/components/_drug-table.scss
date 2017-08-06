@@ -1,5 +1,5 @@
 .drug-table {
-    // border: 1px solid rgba(black, 0.1);
+    border: 0px solid #86550B;
     border-collapse: collapse;
     display: table;
     width: 100%;
@@ -11,6 +11,7 @@
     &__row {
         display: table-row;
         color: black;
+        background-color: white;
         text-decoration: none;
         // align-content: center;
         // text-align: center;
@@ -18,13 +19,13 @@
         // justify-content: space-around;
         transition: background ease-in-out 250ms;
         
-        &:nth-child(2n+1) {
-            background-color: white;
-        }
+        // &:nth-child(2n+1) {
+        //     background-color: white;
+        // }
 
-        &:nth-child(2n) {
-            background-color: #f5e3c9;
-        }
+        // &:nth-child(2n) {
+        //     background-color: #f5e3c9;
+        // }
 
         &:hover {
             background-color: #E7AD56;
@@ -41,7 +42,7 @@
     }
 
     &__cell {
-        border: 1px solid #86550B;
+        // border: 1px solid #86550B;
         // align-content: center;
         vertical-align: middle;
         display: table-cell;

@@ -3,6 +3,8 @@
 @import "components/search-panel";
 @import "components/page";
 @import "components/drug-cards";
+$fa-font-path: "/fonts/font-awesome";
+@import "font-awesome/font-awesome";
 
 * {
     padding: 0;
