@@ -5,6 +5,8 @@
     flex-flow: row wrap;
     align-items: stretch;
     $side-space: 10px;
+    $card-width: 240px;
+    $delete-button-width: 40px;
 
     // height: 1012px;
 
@@ -13,7 +15,6 @@
         
         display: flex;
         flex-direction: column;
-        $card-width: 240px;
         max-width: $card-width;
         min-width: $card-width;
         margin: 8px;
@@ -43,16 +44,19 @@
     }
 
     &__name {
-        padding: 0px $side-space + 12px;
+        padding: 0px 0px 0px $side-space + 12px;
+        width: $card-width - $side-space - $delete-button-width;
         font-weight: bold;
-        
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     &__delete {
         display: inline-block;
         text-align: center;
 
-        width: 40px;
+        width: $delete-button-width;
         height: 25px;
         
         &:hover {
