@@ -46,7 +46,7 @@
     &__name {
         padding: 0px 0px 0px $side-space + 12px;
         width: $card-width - $side-space - $delete-button-width;
-        font-weight: bold;
+        // font-weight: bold;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
