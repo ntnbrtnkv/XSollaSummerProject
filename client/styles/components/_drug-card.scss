@@ -1,0 +1,74 @@
+.drug-card {
+    $side-space: 10px;
+    $card-width: 220px;
+    $delete-button-width: 40px;
+
+    border: 1px solid #86550B;        
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: $card-width;
+    min-width: $card-width;
+    margin: 8px;
+
+    &__body {
+        text-decoration: none;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        background-color: #CE8922;
+        transition: background ease-in-out 250ms;
+
+        &:hover {
+            background-color: #E7AD56;
+        }
+    }
+
+    &__header {
+        background-color: white;
+        cursor: default;
+        display: flex;
+        flex: 0 1 auto;
+        justify-content: space-between;
+    }
+
+    &__name {
+        padding: 0px 0px 0px $side-space + 12px;
+        width: $card-width - $side-space - $delete-button-width;
+        // font-weight: bold;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &__delete {
+        display: inline-block;
+        text-align: center;
+
+        width: $delete-button-width;
+        height: 25px;
+        
+        &:hover {
+            background-color: red;
+            color: white;
+        }
+    }
+
+    &__description {
+        margin: $side-space $side-space 0px $side-space;
+        text-indent: 12px;
+        flex: 1 1 auto;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    &__price {
+        margin: $side-space;
+        font-size: 26px;
+        text-align: right;
+        flex: 0 1 auto;
+    }
+}
