@@ -8,7 +8,9 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     import MutationTypes from '../../../store/mutation-types';
+    import EventBus from '../../../event-bus';
 
     export default {
         props: [
@@ -17,7 +19,9 @@
 
         methods: {
             addToFav: function(drug) {
+                Vue.set(drug, 'addedThroughtSearch', true);
                 this.$store.commit(MutationTypes.ADD_FAV_DRUG, drug);
+                EventBus.$emit('item-commited');
             }
         }
     }

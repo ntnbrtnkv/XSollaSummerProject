@@ -11,7 +11,7 @@ const state = {
         {
             id: 1,
             global_name: "Клопидогрел-Тева",
-            name: "Зитига",
+            name: "1-Зитига",
             form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы (5) - упаковки контурные пластиковые (2) -  пачки картонные",
             company: "ЗАО Бинергия - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-Федеральное Казенное Предприятие Армавирская биологическая фабрика (ФКП Армавирская биофабрика) - Россия.",
             limit_price: 369.25,
@@ -24,7 +24,7 @@ const state = {
             company: "Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина;Пр.,Перв.Уп.-Лаборатория Экзане Фарма С.А. - Аргентина;Втор.Уп.,Вып.к.-Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина.",
             limit_price: 256547,
             reg_date: "27.12.2016 (20-4-4033490-сниж)",
-            id: 48
+            id: 438
         },
         {
             id: 2,
@@ -56,7 +56,7 @@ const state = {
             id: 44
         },
         {
-            id: 1,
+            id: 41,
             global_name: "Клопидогрел-Тева",
             name: "Зитига",
             form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы (5) - упаковки контурные пластиковые (2) -  пачки картонные",
@@ -86,20 +86,28 @@ const state = {
 };
 
 const mutations = {
-    [MutationTypes.DELETE_FAV_DRUG](state, drug) {
+    [MutationTypes.DELETE_FAV_DRUG] (state, drug) {
         state.favDrugsList.splice(state.favDrugsList.indexOf(drug), 1);
     },
 
-    [MutationTypes.START_SEARCHING](state) {
+    [MutationTypes.START_SEARCHING] (state) {
         state.isSearching = true;
     },
 
-    [MutationTypes.END_SEARCHING](state) {
+    [MutationTypes.END_SEARCHING] (state) {
         state.isSearching = false;
     },
 
-    [MutationTypes.ADD_FAV_DRUG](state, drug) {
-        function sortedIndex(array, value) {
+    mark(state, drug) {
+        Vue.set(drug, 'addedThroughtSearch', true);
+    },
+
+    demark(state, drug) {
+        Vue.delete(this.drug, addedThroughtSearch);
+    },
+
+    [MutationTypes.ADD_FAV_DRUG] (state, drug) {
+        function sortedIndex (array, value) {
             let low = 0;
             let high = array.length;
             const loweredName = value.name.toLowerCase();
@@ -113,8 +121,8 @@ const mutations = {
         }
 
         const array = state.favDrugsList;
+        if (array.some(e => e.id === drug.id)) return;
         const indexToPush = sortedIndex(array, drug);
-        console.log(indexToPush);
 
         array.splice(indexToPush, 0, drug);
     }

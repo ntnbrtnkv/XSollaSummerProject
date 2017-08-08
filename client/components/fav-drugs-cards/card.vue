@@ -16,6 +16,7 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     import MutationTypes from '../../store/mutation-types';
 
     export default {
@@ -26,6 +27,20 @@
         methods: {
             deleteFromFav: function(drug) {
                 this.$store.commit(MutationTypes.DELETE_FAV_DRUG, drug);
+            }
+        },
+
+        mounted() {
+            if (!!this.drug.addedThroughtSearch) {
+                let count = 4;
+                const selfEl = this.$el;
+                while (count > 0) {
+                    setTimeout(function() {
+                        selfEl.classList.toggle('drug-card_fresh');
+                    }, 750 * count);
+                    count--;
+                }
+                Vue.delete(this.drug, 'addedThroughtSearch');
             }
         }
     }
