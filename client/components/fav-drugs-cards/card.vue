@@ -9,7 +9,7 @@
                 {{ drug.name }}: {{ drug.form }}
             </div>
             <div class="drug-card__price">
-                {{ drug.limit_price }} &#8381
+                {{ drug.limit_price | currency }}
             </div>
         </a>
     </div>

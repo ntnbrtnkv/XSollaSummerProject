@@ -4,7 +4,7 @@
 
         <div class="fav-drugs__container">
             <template v-if="getFavDrugsList.length > 0">
-                <card v-for="drug in getFavDrugsList" :key="drug.id" :drug="drug"></card>
+                <Card v-for="drug in getFavDrugsList" :key="drug.id" :drug="drug"></Card>
             </template>
             <h3 v-else class="fav-drugs__empty-message">Сейчас тут пусто...</h3>
         </div>
@@ -22,6 +22,10 @@
         computed: {
             getFavDrugsList() {
                 return this.$store.state.favDrugsList;
+            },
+
+            isSearching() {
+                return this.$store.state.isSearching;
             }
         }
     }

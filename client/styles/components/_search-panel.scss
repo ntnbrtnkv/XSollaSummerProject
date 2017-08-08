@@ -3,6 +3,10 @@
     position: relative;
     margin: 0px 0px;
 
+    &_searching {
+        box-shadow: 0px 0px 4px;
+    }
+
     &__icon {
         margin: 4px 4px 4px 8px;
         flex: 0 1 auto;
@@ -12,8 +16,8 @@
         display: flex;
         flex-direction: row;
         align-items: baseline;
-        box-shadow: 0px 0px 2px;
         width: 100%;
+        box-shadow: 0px 0px 2px;
     }
 
     &__input {
@@ -25,11 +29,12 @@
 
     &__results {
         position: absolute;
-        top: 33px;
-        z-index: 1;
+        top: 35px;
+        box-shadow: 0px 0px 4px;
+        display: none;
 
-        &_invisible {
-            display: none;
+        &_display {
+            display: block;
         }
     }
 }

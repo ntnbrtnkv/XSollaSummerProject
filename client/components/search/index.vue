@@ -1,15 +1,25 @@
 <template>
-    <div class="search-panel">
-          <div class="search-panel__filler"></div>
-          
-          <div class="search-panel__search-line">
-            <i class="fa fa-search search-panel__icon" aria-hidden="true"></i>
-            <input class="search-panel__input"
-                  type="search"
-                  placeholder="Поиск лекарства">
-          </div>
-
-          <div id="search-panel__results" class="drug-table search-panel__results search-panel__results_invisible ">
-          </div>
-    </div>
+      <div :class="['search-panel', {'search-panel_searching': isSearching}]">
+            <InputComponent></InputComponent>
+            <Results></Results>
+      </div>
 </template>
+
+<script>
+      import Results from './results/index';
+      import InputComponent from './input';
+
+      export default {
+            components: {
+                  Results,
+                  InputComponent
+            },
+
+            computed: {
+                  isSearching() {
+                        return this.$store.state.isSearching;
+                  }
+            }
+      }
+</script>
+
