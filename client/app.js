@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import FavDrugsComponent from './components/fav-drugs-cards/index';
+import FavDrugsComponent from './components/fav-drugs/index';
 import SearchComponent from './components/search/index';
 import store from './store/store';
 

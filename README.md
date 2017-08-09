@@ -1,14 +1,10 @@
-# summer-school-2017
+# Pharmacy
+Be aware the last changes of information on drugs. 
 
 To start:
 
 ```bash
 $ npm install
-```
-
-```bash
-$ npm install -g json-server
-$ json-server —watch cities.json
 ```
 
 To develop:

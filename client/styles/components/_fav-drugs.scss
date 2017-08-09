@@ -1,29 +1,29 @@
 .fav-drugs {
-    margin-top: 21px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     background-color: #E7BC7D;
     box-shadow: 0px 0px 2px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 21px;
+    padding: 20px;
+
+    &_disabled {
+        display: none;
+    }
+
+    &__empty-message {
+        color: rgba(black, 0.5);
+    }
 
     &__container {
+        align-items: stretch;
         display: flex;
         flex-flow: row wrap;
-        align-items: stretch;
         justify-content: space-around;
     }
 
     &__title {
         font-size: 26px;
         padding-bottom: 20px;
-    }
-
-    &__empty-message {
-        color: rgba(0, 0, 0, 0.5);
-    }
-
-    &_disabled {
-        display: none;
     }
 }
