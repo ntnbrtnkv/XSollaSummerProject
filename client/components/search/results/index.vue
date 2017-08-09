@@ -1,7 +1,7 @@
 <template>
     <div id="search-panel__results"
          :class="['drug-table', 'search-panel__results', {'search-panel__results_display': isSearching}]">
-        <ResultItem v-for="drug in getFoundDrugsList" :key="drug.id" :drug="drug"></ResultItem>
+        <ResultItem v-for="drug in getUniqueFoundDrugsList" :key="drug.id" :drug="drug"></ResultItem>
     </div>
 </template>
 
@@ -16,6 +16,12 @@
         computed: {
             getFoundDrugsList() {
                 return this.$store.state.foundDrugsList;
+            },
+
+            getUniqueFoundDrugsList() {
+                const found = this.getFoundDrugsList;
+                const ids = this.$store.getters.favDrugsIdList;
+                return found.filter(drug => !ids.some(id => id === drug.id));
             },
 
             isSearching() {

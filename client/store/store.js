@@ -4,6 +4,47 @@ import MutationTypes from './mutation-types';
 
 Vue.use(Vuex);
 
+const getters = {
+    favDrugsIdList: (state) => {
+        return state.favDrugsList.map(el => el.id);
+    }
+};
+
+const mutations = {
+    [MutationTypes.DELETE_FAV_DRUG] (state, drug) {
+        state.favDrugsList.splice(state.favDrugsList.indexOf(drug), 1);
+    },
+
+    [MutationTypes.START_SEARCHING] (state) {
+        state.isSearching = true;
+    },
+
+    [MutationTypes.END_SEARCHING] (state) {
+        state.isSearching = false;
+    },
+
+    [MutationTypes.ADD_FAV_DRUG] (state, drug) {
+        function sortedIndex (array, value) {
+            let low = 0;
+            let high = array.length;
+            const loweredName = value.name.toLowerCase();
+
+            while (low < high) {
+                const mid = (low + high) >>> 1;
+                if (array[mid].name.toLowerCase() < loweredName) low = mid + 1;
+                else high = mid;
+            }
+            return low;
+        }
+
+        const array = state.favDrugsList;
+        if (array.some(e => e.id === drug.id)) return;
+        const indexToPush = sortedIndex(array, drug);
+
+        array.splice(indexToPush, 0, drug);
+    }
+};
+
 const state = {
     title: "Pharmacy",
     isSearching: false,
@@ -85,51 +126,9 @@ const state = {
     ]
 };
 
-const mutations = {
-    [MutationTypes.DELETE_FAV_DRUG] (state, drug) {
-        state.favDrugsList.splice(state.favDrugsList.indexOf(drug), 1);
-    },
-
-    [MutationTypes.START_SEARCHING] (state) {
-        state.isSearching = true;
-    },
-
-    [MutationTypes.END_SEARCHING] (state) {
-        state.isSearching = false;
-    },
-
-    mark(state, drug) {
-        Vue.set(drug, 'addedThroughtSearch', true);
-    },
-
-    demark(state, drug) {
-        Vue.delete(this.drug, addedThroughtSearch);
-    },
-
-    [MutationTypes.ADD_FAV_DRUG] (state, drug) {
-        function sortedIndex (array, value) {
-            let low = 0;
-            let high = array.length;
-            const loweredName = value.name.toLowerCase();
-
-            while (low < high) {
-                const mid = (low + high) >>> 1;
-                if (array[mid].name.toLowerCase() < loweredName) low = mid + 1;
-                else high = mid;
-            }
-            return low;
-        }
-
-        const array = state.favDrugsList;
-        if (array.some(e => e.id === drug.id)) return;
-        const indexToPush = sortedIndex(array, drug);
-
-        array.splice(indexToPush, 0, drug);
-    }
-};
-
 const store = new Vuex.Store({
     state,
+    getters,
     mutations
 });
 

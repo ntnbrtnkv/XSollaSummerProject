@@ -1,18 +1,18 @@
 .drug-card {
-    $side-space: 10px;
     $card-width: 220px;
     $delete-button-width: 40px;
-    user-select: none;
-    border: 1px solid #86550B;        
+    $side-space: 10px;
+
+    background-color: #CE8922;
+    border: 1px solid #86550B;
     display: flex;
     flex-direction: column;
+    flex: 1 1 $card-width;
     justify-content: center;
-    max-width: $card-width;
-    min-width: $card-width;
     margin: 8px;
-    transition: box-shadow 250ms ease-in-out;
-    background-color: #CE8922;
     transition: background ease-in-out 250ms;
+    transition: box-shadow 250ms ease-in-out;
+    user-select: none;
 
     &_fresh {
         background-color: #E7AD56;
@@ -23,13 +23,48 @@
         box-shadow: 0px 0px 2px black;
     }
 
+
     &__body {
-        text-decoration: none;
         color: black;
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
+        text-decoration: none;
     }
+
+
+    &__delete {
+        display: inline-block;
+        height: 25px;
+        text-align: center;
+        width: $delete-button-width;
+
+        &:hover {
+            background-color: red;
+            color: white;
+        }
+    }
+
+
+    &__description {
+        flex: 1 1 auto;
+        margin: $side-space $side-space 0px $side-space;
+        text-indent: 12px;
+        
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+
+    &__name {
+        overflow: hidden;
+        padding: 0px 0px 0px $side-space + 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: $card-width - $side-space - $delete-button-width;
+    }
+
 
     &__header {
         background-color: white;
@@ -39,42 +74,11 @@
         justify-content: space-between;
     }
 
-    &__name {
-        padding: 0px 0px 0px $side-space + 12px;
-        width: $card-width - $side-space - $delete-button-width;
-        // font-weight: bold;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    &__delete {
-        display: inline-block;
-        text-align: center;
-
-        width: $delete-button-width;
-        height: 25px;
-        
-        &:hover {
-            background-color: red;
-            color: white;
-        }
-    }
-
-    &__description {
-        margin: $side-space $side-space 0px $side-space;
-        text-indent: 12px;
-        flex: 1 1 auto;
-
-        &::first-letter {
-            text-transform: capitalize;
-        }
-    }
 
     &__price {
-        margin: $side-space;
-        font-size: 26px;
-        text-align: right;
         flex: 0 1 auto;
+        font-size: 26px;
+        margin: $side-space;
+        text-align: right;
     }
 }
