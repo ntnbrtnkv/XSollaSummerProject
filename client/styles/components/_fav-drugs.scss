@@ -7,13 +7,10 @@
     margin-top: 21px;
     padding: 20px;
 
-    &_disabled {
-        display: none;
-    }
-
     &__empty-message {
         color: rgba(black, 0.5);
     }
+
 
     &__container {
         align-items: stretch;
@@ -21,6 +18,7 @@
         flex-flow: row wrap;
         justify-content: space-around;
     }
+
 
     &__title {
         font-size: 26px;
