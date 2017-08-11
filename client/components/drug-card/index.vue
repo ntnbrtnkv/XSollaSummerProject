@@ -4,14 +4,16 @@
             <span class="drug-card__name">{{ drug.name }}</span>
             <div class="drug-card__delete" @click="deleteFromFav(drug)">&#10005</div>  
         </div>
-        <a class="drug-card__body" href="#">
+        <router-link v-bind:to="'/drug/' + drug.id" class="drug-card__body">
+        <!-- <a class="drug-card__body" :href="'/drug/' + drug.id"> -->
             <div class="drug-card__description">
                 {{ drug.name }}: {{ drug.form }}
             </div>
             <div class="drug-card__price">
                 {{ drug.limit_price | currency }}
             </div>
-        </a>
+        <!-- </a> -->
+        </router-link>
     </div>
 </template>
 

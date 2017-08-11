@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const getters = {
     favDrugsIdList: (state) => {
         return state.favDrugsList.map(el => el.id);
-    }
+    },
 };
 
 const mutations = {
@@ -21,6 +21,11 @@ const mutations = {
 
     [MutationTypes.END_SEARCHING] (state) {
         state.isSearching = false;
+    },
+
+    [MutationTypes.SET_DRUG_BY_ID] (state, id) {
+        const value = state.favDrugsList.find(el => el.id === id);
+        Vue.set(state, 'currentDrug', value);
     },
 
     [MutationTypes.ADD_FAV_DRUG] (state, drug) {
@@ -48,6 +53,7 @@ const mutations = {
 const state = {
     title: "Pharmacy",
     isSearching: false,
+    currentDrug: {},
     foundDrugsList: [
         {
             id: 1,

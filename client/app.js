@@ -1,6 +1,9 @@
 import Vue from 'vue';
+import { sync } from 'vuex-router-sync';
+import App from './components/App';
 import FavDrugsComponent from './components/fav-drugs/index';
 import SearchComponent from './components/search/index';
+import router from './router/index';
 import store from './store/store';
 
 Vue.filter('currency', function (value) {
@@ -22,23 +25,12 @@ Vue.filter('currency', function (value) {
     return newPrice + '.' + afterComma + nbsp + ruble;
 });
 
+sync(store, router);
+
 const app = new Vue({
-    components: {
-        FavDrugsComponent,
-        SearchComponent
-    },
-
-    render(h) {
-        return (
-            <div class="page">
-                <h1 class="page__title">Pharmacy</h1> 
-                <SearchComponent></SearchComponent>
-                <FavDrugsComponent></FavDrugsComponent>
-            </div>
-        );
-    },
-
-    store
+    router,
+    store,
+    ...App
 });
 
-export { app }
+export { app, router, store }
