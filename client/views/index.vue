@@ -1,6 +1,5 @@
 <template>
-    <div class="page">
-        <h1 class="page__title">Pharmacy</h1> 
+    <div class="content">
         <SearchComponent></SearchComponent>
         <FavDrugsComponent></FavDrugsComponent>
     </div>

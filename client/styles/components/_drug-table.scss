@@ -1,6 +1,5 @@
 .drug-table {
     border-collapse: collapse;
-    box-shadow: 0 0 2px;
     display: table;
     width: 100%;
 
@@ -8,25 +7,21 @@
         display: none;
     }
 
+
     &__row {
         background-color: white;
         border-top: 1px solid rgba(black, 0.15);
         color: black;
-        cursor: pointer;
         display: table-row;
         text-decoration: none;
         transition: background ease-in-out 250ms;
-        user-select: none;
+
 
         &:first-child {
             border-top: 0;
         }
-
-        &:hover {
-            background-color: #E7AD56;
-            cursor: pointer;
-        }
     }
+
 
     &__row_header {
         background-color: #CE8922;
@@ -36,6 +31,7 @@
         text-align: center;
     }
 
+
     &__cell {
         display: table-cell;
         padding: 7px;
@@ -44,7 +40,14 @@
         &_align_right {
             text-align: right;
         }
+
+
+        &_field {
+            background-color: #E7BC7D;
+            font-weight: 500;
+        }
     }
+
 
     &__delete-button {
         background-color: red;

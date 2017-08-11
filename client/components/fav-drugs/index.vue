@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Card from '../drug-card/index.vue';
+    import Card from './../drug-card/index.vue';
 
     export default {
         components: {

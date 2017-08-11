@@ -1,6 +1,16 @@
 <template>
-    <div class="drug-table">
-         <Row v-for="field in getFiledsList" :rowInfo="getRowInfoByFiled(field)"></Row>
+    <div class="drug-details">
+        <div class="drug-details__content">
+            <template v-if="canGetCurrentDrug">
+                <h2 class="drug-details__title">Информация о препарате</h2>
+                <div v-if="canGetCurrentDrug" class="drug-table">
+                    <Row v-for="field in getFiledsList" :key="field" :rowInfo="getRowInfoByFiled(field)"></Row>
+                </div>
+            </template>
+            <h2 v-else class="drug-details__empty_message">
+                Не удалось найти препарат :(
+            </h2>
+        </div>
     </div>
 </template>
 
@@ -38,12 +48,13 @@
                 return this.$store.state.currentDrug;
             },
 
-
+            canGetCurrentDrug() {
+                return !!this.getCurrentDrug;
+            }
         },
 
         mounted() {
             this.$store.commit(MutationTypes.SET_DRUG_BY_ID, +this.$route.params.drugId);
-            // this.$store.dispatch('loadForecast');
         },
 
         methods: {
@@ -53,13 +64,13 @@
             },
 
             getRowInfoByFiled: function(field) {
-                console.log(field);
                 const drug = this.getCurrentDrug;
                 const rowInfo = {
                     field        : this.getNameForField(field),
                     description  : this.getCurrentDrug[field]
                 };
-                console.log(rowInfo);
+                if (field === 'limit_price')
+                    rowInfo.description = this.$options.filters.ru_currency(rowInfo.description);
                 return rowInfo;
             }
         }

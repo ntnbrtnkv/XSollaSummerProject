@@ -5,21 +5,19 @@
             <div class="drug-card__delete" @click="deleteFromFav(drug)">&#10005</div>  
         </div>
         <router-link v-bind:to="'/drug/' + drug.id" class="drug-card__body">
-        <!-- <a class="drug-card__body" :href="'/drug/' + drug.id"> -->
             <div class="drug-card__description">
                 {{ drug.name }}: {{ drug.form }}
             </div>
             <div class="drug-card__price">
-                {{ drug.limit_price | currency }}
+                {{ drug.limit_price | ru_currency }}
             </div>
-        <!-- </a> -->
         </router-link>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import MutationTypes from '../../store/mutation-types';
+    import MutationTypes from './../../store/mutation-types';
 
     export default {
         props: [

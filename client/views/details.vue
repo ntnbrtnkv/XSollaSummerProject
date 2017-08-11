@@ -1,12 +1,11 @@
 <template>
-    <div class="page">
-        <h1 class="page__title">Информация о препарате</h1>
+    <div class="content">
         <DrugInfo :drugId="getId"></DrugInfo>
     </div>
 </template>
 
 <script>
-    import DrugInfo from './../components/drug-info/index';
+    import DrugInfo from '../components/drug-details/index';
 
     export default {
         components: {

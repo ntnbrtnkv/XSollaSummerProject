@@ -1,12 +1,10 @@
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
-import App from './components/App';
-import FavDrugsComponent from './components/fav-drugs/index';
-import SearchComponent from './components/search/index';
+import App from './components/app';
 import router from './router/index';
 import store from './store/store';
 
-Vue.filter('currency', function (value) {
+Vue.filter('ru_currency', function (value) {
     if (!value) return '';
     value = value.toString();
     const every = 3;

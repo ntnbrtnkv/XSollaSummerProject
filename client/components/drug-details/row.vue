@@ -1,9 +1,9 @@
 <template>
     <div class="drug-table__row">
-        <div class="drug-table__cell drug-table__cell_field">
+        <div class="drug-table__cell drug-table__cell_field drug-details__cell">
              {{ rowInfo.field }} 
         </div>
-        <div class="drug-table__cell">
+        <div class="drug-table__cell drug-details__cell">
              {{ rowInfo.description }} 
         </div>
     </div>

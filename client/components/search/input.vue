@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import MutationTypes from '../../store/mutation-types';
-    import EventBus from '../../event-bus';
+    import MutationTypes from './../../store/mutation-types';
+    import EventBus from './../../event-bus';
 
     EventBus.$on('item-commited', function() {
         const inputEl = document.getElementById('search-panel__input');

@@ -1,0 +1,25 @@
+.drug-details {
+    background-color: #E7BC7D;
+    border-color: #86550B;
+    box-shadow: 0 0 2px;
+
+
+    &__cell {
+        text-align: center;
+    }
+
+
+    &__empty_message {
+        color: rgba(black, 0.5);
+        padding: 20px;
+        text-align: center;
+    }
+
+
+    &__title {
+        border-bottom: 1px solid rgba(black, 0.3);
+        font-size: 26px;
+        padding: 20px 0px;
+        text-align: center;
+    }
+}

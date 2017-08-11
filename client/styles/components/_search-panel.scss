@@ -40,5 +40,15 @@
         &_hidden {
             display: none;
         }
+
+
+        &__item {
+            user-select: none;
+
+            &:hover {
+                background-color: #E7AD56;
+                cursor: pointer;
+            }
+        }
     }
 }

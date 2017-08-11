@@ -1,10 +1,11 @@
-@import "components/drug-table";
-@import "components/fav-drugs";
-@import "components/search-panel";
-@import "components/page";
-@import "components/drug-card";
 $fa-font-path: "/fonts/font-awesome";
-@import "font-awesome/font-awesome";
+@import "./font-awesome/font-awesome";
+@import "./components/drug-table";
+@import "./components/fav-drugs";
+@import "./components/search-panel";
+@import "./components/page";
+@import "./components/drug-card";
+@import "./components/drug-details";
 
 * {
     padding: 0;
