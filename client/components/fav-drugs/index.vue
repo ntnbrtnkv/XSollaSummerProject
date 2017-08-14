@@ -12,11 +12,24 @@
 </template>
 
 <script>
+    import ActionTypes from './../../store/action-types';
     import Card from './../drug-card/index.vue';
+    import MutationTypes from './../../store/mutation-types';
 
     export default {
         components: {
             Card
+        },
+
+        mounted: function() {
+            const sessionId = this.$cookie.get('_sessionId');
+            this.$store.dispatch(ActionTypes.GET_ACTUAL_SESSION_INFO, sessionId)
+                .then(({id, drugs}) => {
+                    this.$cookie.set('_sessionId', id, '1d');
+                    this.$store.commit(MutationTypes.SET_SESSION_ID, id);
+                    this.$store.commit(MutationTypes.SET_FAV_DRUG_LIST, drugs);
+                })
+                .catch(err => console.log(err));
         },
 
         computed: {

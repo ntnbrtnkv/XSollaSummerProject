@@ -43,6 +43,7 @@
     "babel-runtime": "^6.18.0",
     "promise-polyfill": "^6.0.2",
     "vue": "^2.2.0",
+    "vue-cookie": "^1.1.4",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^4.0.0"

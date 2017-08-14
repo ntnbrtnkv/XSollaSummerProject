@@ -15,7 +15,7 @@
 
         computed: {
             getFoundDrugsList() {
-                return this.$store.state.foundDrugsList;
+                return this.$store.state.foundDrugList;
             },
 
             getUniqueFoundDrugsList() {

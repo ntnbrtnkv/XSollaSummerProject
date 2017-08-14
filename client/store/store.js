@@ -1,8 +1,54 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 import MutationTypes from './mutation-types';
+import ActionTypes from './action-types';
 
 Vue.use(Vuex);
+
+const host = 'http://localhost:3000';
+
+const actions = {
+    [ActionTypes.SEARCH_DRUG] ({ state }, value) {
+        return new Promise((resolve, reject) => {
+            api.search(value, resolve, reject);
+        });
+    },
+
+    [ActionTypes.GET_ACTUAL_SESSION_INFO] (state, cookieSessionID) {
+        return new Promise( (resolve, reject) => {
+            api.getInfoById(cookieSessionID, resolve, reject);
+        });
+    }
+};
+
+const api = {
+    search(searchString, resolve, reject) {
+        axios.get(`${host}/drugs?q=${searchString}&_limit=10`)
+            .then(resolve)
+            .catch(reject);
+    },
+
+    registerSession(resolve, reject) {
+        axios.post(`${host}/sessions`, {
+            'drugs': []
+        })
+            .then(resolve)
+            .catch(reject);
+    },
+
+    getInfoById(id, resolve, reject) {
+        axios.get(`${host}/sessions/${id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                api.registerSession(res => {
+                    resolve(res.data);
+                }, reject);
+            });
+    },
+};
 
 const getters = {
     favDrugsIdList: (state) => {
@@ -13,6 +59,9 @@ const getters = {
 const mutations = {
     [MutationTypes.DELETE_FAV_DRUG] (state, drug) {
         state.favDrugsList.splice(state.favDrugsList.indexOf(drug), 1);
+        axios.patch(`${host}/sessions/${state.sessionID}`, {
+            "drugs": state.favDrugsList
+        });
     },
 
     [MutationTypes.START_SEARCHING] (state) {
@@ -21,11 +70,25 @@ const mutations = {
 
     [MutationTypes.END_SEARCHING] (state) {
         state.isSearching = false;
+        state.currentDrug = {};
+        state.foundDrugList = [];
+    },
+
+    [MutationTypes.SET_SESSION_ID] (state, newID) {
+        state.sessionID = newID;
     },
 
     [MutationTypes.SET_DRUG_BY_ID] (state, id) {
         const value = state.favDrugsList.find(el => el.id === id);
         Vue.set(state, 'currentDrug', value);
+    },
+
+    [MutationTypes.SET_FOUND_DRUG_LIST] (state, drugs) {
+        state.foundDrugList = drugs || [];
+    },
+
+    [MutationTypes.SET_FAV_DRUG_LIST] (state, drugs) {
+        state.favDrugsList = drugs || [];
     },
 
     [MutationTypes.ADD_FAV_DRUG] (state, drug) {
@@ -47,95 +110,25 @@ const mutations = {
         const indexToPush = sortedIndex(array, drug);
 
         array.splice(indexToPush, 0, drug);
+        axios.patch(`${host}/sessions/${state.sessionID}/`, {
+            "drugs": array
+        });
     }
 };
 
 const state = {
-    title: "Pharmacy",
     isSearching: false,
+    sessionID: '',
     currentDrug: {},
-    foundDrugsList: [
-        {
-            id: 1,
-            global_name: "Клопидогрел-Тева",
-            name: "1-Зитига",
-            form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы (5) - упаковки контурные пластиковые (2) -  пачки картонные",
-            company: "ЗАО Бинергия - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-Федеральное Казенное Предприятие Армавирская биологическая фабрика (ФКП Армавирская биофабрика) - Россия.",
-            limit_price: 369.25,
-            reg_date: "21.11.2014 (717/20-14)"
-        },
-        {
-            global_name: "Леналидомид",
-            name: "Метибластан",
-            form: "капсулы, 25 мг, (7) - упаковки ячейковые контурные, 3 шт. ~ / пачки картонные",
-            company: "Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина;Пр.,Перв.Уп.-Лаборатория Экзане Фарма С.А. - Аргентина;Втор.Уп.,Вып.к.-Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина.",
-            limit_price: 256547,
-            reg_date: "27.12.2016 (20-4-4033490-сниж)",
-            id: 438
-        },
-        {
-            id: 2,
-            global_name: "Димеркаптопропансульфонат натрия",
-            name: "Унитиол",
-            form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы  (10) /в комплекте с ножом ампульным или скарификатором ампульным/ - пачки картонные",
-            company: "ООО «СтатусФарм» - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-ОАО Ереванская химико-фармацевтическая фирма - Армения.",
-            limit_price: 369.2,
-            reg_date: "31.10.2013 (599/20-13)"
-        },
-    ],
-    favDrugsList: [
-        {
-            id: 3,
-            global_name: "Димеркаптопропансульфонат натрия",
-            name: "Абиратерон",
-            form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы (5) - упаковки контурные пластиковые (2) -  пачки картонные",
-            company: "ЗАО Бинергия - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-Федеральное Казенное Предприятие Армавирская биологическая фабрика (ФКП Армавирская биофабрика) - Россия.",
-            limit_price: 369.25,
-            reg_date: "25.04.2016 (20-4-4008872-изм)"
-        },
-        {
-            global_name: "Пертузумаб+Трастузумаб [набор]",
-            name: "Бейодайм",
-            form: "капсулы, 25 мг, 7 шт. (7) - блистеры, 3 шт. ~ / пачки картонные",
-            company: "Акционерное общество Р-Фарм - Россия;Пр.,Перв.Уп.-Рош Диагностикс ГмбХ, Германия (Перьета (пертузумаб)); Дженентек Инк., США (Герцептин (трастузумаб)); Ф.Хоффманн-Ля Рош Лтд, Швейцария (бактериостатическая вода для инъекций) - Германия/США/Швейцария;Втор.Уп.-Акционерное общество ОРТАТ                           (АО ОРТАТ) - Россия;Вып.к.-Акционерное общество ОРТАТ (АО ОРТАТ) - Россия.",
-            limit_price: 292357.07,
-            reg_date: "11.07.2017 (20-4-4047183-изм)",
-            id: 44
-        },
-        {
-            id: 41,
-            global_name: "Клопидогрел-Тева",
-            name: "Зитига",
-            form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы (5) - упаковки контурные пластиковые (2) -  пачки картонные",
-            company: "ЗАО Бинергия - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-Федеральное Казенное Предприятие Армавирская биологическая фабрика (ФКП Армавирская биофабрика) - Россия.",
-            limit_price: 369.25,
-            reg_date: "21.11.2014 (717/20-14)"
-        },
-        {
-            global_name: "Леналидомид",
-            name: "Метибластан",
-            form: "капсулы, 25 мг, (7) - упаковки ячейковые контурные, 3 шт. ~ / пачки картонные",
-            company: "Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина;Пр.,Перв.Уп.-Лаборатория Экзане Фарма С.А. - Аргентина;Втор.Уп.,Вып.к.-Лаборатория Тютор С.А.С.И.Ф.И.А - Аргентина.",
-            limit_price: 256547,
-            reg_date: "27.12.2016 (20-4-4033490-сниж)",
-            id: 48
-        },
-        {
-            id: 2,
-            global_name: "Димеркаптопропансульфонат натрия",
-            name: "Унитиол",
-            form: "раствор для внутримышечного и подкожного введения 50 мг/мл, 5 мл - ампулы  (10) /в комплекте с ножом ампульным или скарификатором ампульным/ - пачки картонные",
-            company: "ООО «СтатусФарм» - Россия;Пр.,Перв.Уп.,Втор.Уп.,Вып.к.-ОАО Ереванская химико-фармацевтическая фирма - Армения.",
-            limit_price: 369.2,
-            reg_date: "31.10.2013 (599/20-13)"
-        },
-    ]
+    foundDrugList: [],
+    favDrugsList: []
 };
 
 const store = new Vuex.Store({
     state,
     getters,
-    mutations
+    mutations,
+    actions
 });
 
 export default store
