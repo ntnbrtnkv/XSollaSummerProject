@@ -5,6 +5,8 @@ To start:
 
 ```bash
 $ npm install
+$ npm install -g json-server
+$ json-server --watch db.json
 ```
 
 To develop:
