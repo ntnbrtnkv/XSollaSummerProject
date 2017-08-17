@@ -21,7 +21,7 @@
             Card
         },
 
-        mounted: function() {
+        beforeCreate: function() {
             const sessionId = this.$cookie.get('_sessionId');
             this.$store.dispatch(ActionTypes.GET_ACTUAL_SESSION_INFO, sessionId)
                 .then(({id, drugs}) => {

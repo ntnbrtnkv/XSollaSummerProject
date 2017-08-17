@@ -1,6 +1,7 @@
 <template>
     <div id="search-panel__results"
-         :class="['drug-table', 'search-panel__results', {'search-panel__results_hidden': !isSearching}]">
+         v-if="isSearching"
+         :class="['drug-table', 'search-panel__results']">
         <ResultItem v-for="drug in getUniqueFoundDrugsList" :key="drug.id" :drug="drug"></ResultItem>
     </div>
 </template>

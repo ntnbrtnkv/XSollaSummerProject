@@ -3,10 +3,11 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import MutationTypes from './mutation-types';
 import ActionTypes from './action-types';
+import Config from "./../../config.json";
 
 Vue.use(Vuex);
 
-const host = 'http://localhost:3000';
+const host = `${Config.apiServer.host}:${Config.apiServer.port}`;
 
 const actions = {
     [ActionTypes.SEARCH_DRUG] ({ state }, value) {

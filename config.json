@@ -1,3 +1,6 @@
 {
-  "apiKey": "71676e8c9a794ec683e153910172507"
+  "apiServer": {
+    "host": "http://localhost",
+    "port": 3000
+  }
 }
