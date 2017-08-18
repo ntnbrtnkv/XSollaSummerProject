@@ -6,8 +6,11 @@
 </template>
 
 <script>
-      import Results from './results/index';
-      import InputComponent from './input';
+//      import Results from './results/index';
+//      import InputComponent from './input';
+
+      const Results = () => import('./results/index');
+      const InputComponent = () => import('./input');
 
       export default {
             components: {

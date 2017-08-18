@@ -4,7 +4,9 @@ process.env.NODE_ENV = 'production';
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const rm = require('rimraf');
 const base = require('./webpack.base');
 const pkg = require('../package');
@@ -39,6 +41,11 @@ base.plugins.push(
       comments: false
     }
   }),
+  new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+          safe: true
+      }
+  }),
   // extract vendor chunks
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -47,10 +54,22 @@ base.plugins.push(
     }
   }),
   new webpack.optimize.CommonsChunkPlugin({
-    name: 'manifest'
+     name: 'manifest',
+     chunks: ['vendor']
   }),
   // progressive web app
   // it uses the publicPath in webpack config
+  new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+          '\\.(' +
+          ['js', 'css'].join('|') +
+          ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+  })
 );
 
 // extract css in standalone css files

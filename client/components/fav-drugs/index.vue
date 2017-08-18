@@ -13,7 +13,8 @@
 
 <script>
     import ActionTypes from './../../store/action-types';
-    import Card from './../drug-card/index.vue';
+//    import Card from './../drug-card/index.vue';
+    const Card = () => import('./../drug-card/index.vue');
     import MutationTypes from './../../store/mutation-types';
 
     export default {
