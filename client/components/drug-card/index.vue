@@ -1,5 +1,5 @@
 <template>
-    <div class="drug-card">
+    <div class="drug-card" :id="'drug-card-' + drug.id">
         <div class="drug-card__header">
             <span class="drug-card__name">{{ drug.name }}</span>
             <div class="drug-card__delete" @click="deleteFromFav(drug)">&#10005</div>  

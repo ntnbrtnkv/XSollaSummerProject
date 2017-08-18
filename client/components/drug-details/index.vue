@@ -50,7 +50,8 @@
             },
 
             canGetCurrentDrug() {
-                return !!this.getCurrentDrug;
+                const currentDrug = this.getCurrentDrug;
+                return !!currentDrug && Object.keys(currentDrug).length !== 0;
             }
         },
 

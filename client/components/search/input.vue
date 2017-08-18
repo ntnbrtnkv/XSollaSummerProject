@@ -41,6 +41,8 @@
                             this.$store.commit(MutationTypes.SET_FOUND_DRUG_LIST, res.data);
                         })
                         .catch((err) => console.log(err));
+                } else {
+                    this.$store.commit(MutationTypes.CLEAR_SEARCH_RESULTS);
                 }
             },
         }

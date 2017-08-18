@@ -38,6 +38,16 @@ const api = {
             .catch(reject);
     },
 
+    getDrugById(id, resolve, reject) {
+        axios.get(`${host}/drugs/${id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    },
+
     getInfoById(id, resolve, reject) {
         axios.get(`${host}/sessions/${id}`)
             .then(res => {
@@ -69,10 +79,13 @@ const mutations = {
         state.isSearching = true;
     },
 
-    [MutationTypes.END_SEARCHING] (state) {
-        state.isSearching = false;
+    [MutationTypes.CLEAR_SEARCH_RESULTS] (state) {
         state.currentDrug = {};
         state.foundDrugList = [];
+    },
+
+    [MutationTypes.END_SEARCHING] (state) {
+        state.isSearching = false;
     },
 
     [MutationTypes.SET_SESSION_ID] (state, newID) {
@@ -81,7 +94,11 @@ const mutations = {
 
     [MutationTypes.SET_DRUG_BY_ID] (state, id) {
         const value = state.favDrugsList.find(el => el.id === id);
-        Vue.set(state, 'currentDrug', value);
+        if (value) {
+            Vue.set(state, 'currentDrug', value);
+        } else {
+            api.getDrugById(id, res => Vue.set(state, 'currentDrug', res), err => console.log(err));
+        }
     },
 
     [MutationTypes.SET_FOUND_DRUG_LIST] (state, drugs) {

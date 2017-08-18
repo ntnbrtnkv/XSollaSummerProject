@@ -1,5 +1,5 @@
 <template>
-    <div class="drug-table__row search-panel__results__item"
+    <div :id="'search-result-' + drug.id" class="drug-table__row search-panel__results__item"
         @mousedown="addToFav(drug)">
         <div class="drug-table__cell">{{ drug.name }}</div>
         <div class="drug-table__cell">{{ drug.form }}</div>
