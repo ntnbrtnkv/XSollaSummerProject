@@ -1,6 +1,9 @@
 <template>
     <div class="search-panel__search-line">
-        <i class="fa fa-search search-panel__icon" aria-hidden="true"></i>
+        <div class="search-panel__icon">
+            <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true" v-if="isFetchingSearchData"></i>
+            <i class="fa fa-search" aria-hidden="true" v-else></i>
+        </div>
         <input id="search-panel__input"
                 class="search-panel__input"
                 type="search"
@@ -22,6 +25,12 @@
     });
 
     export default {
+        computed: {
+            isFetchingSearchData() {
+                return this.$store.state.isFetchingSearchData;
+            }
+        },
+
         methods: {
             startSearching: function () {
                 this.$store.commit(MutationTypes.START_SEARCHING);

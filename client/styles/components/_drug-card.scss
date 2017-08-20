@@ -35,7 +35,6 @@
 
     &__delete {
         display: inline-block;
-        height: 25px;
         text-align: center;
         width: $delete-button-width;
 
@@ -62,7 +61,6 @@
         padding: 0px 0px 0px $side-space + 12px;
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: $card-width - $side-space - $delete-button-width;
     }
 
 

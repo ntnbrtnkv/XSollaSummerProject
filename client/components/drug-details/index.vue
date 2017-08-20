@@ -16,8 +16,6 @@
 
 <script>
     import MutationTypes from './../../store/mutation-types';
-//    import Row from './row';
-
     const Row = () => import('./row');
 
     export default {

@@ -11,8 +11,14 @@ const host = `${Config.apiServer.host}:${Config.apiServer.port}`;
 
 const actions = {
     [ActionTypes.SEARCH_DRUG] ({ state }, value) {
+        state.commit(MutationTypes.SET_FETCH_FLAG, true);
         return new Promise((resolve, reject) => {
-            api.search(value, resolve, reject);
+            api.search(value,
+                res => {
+                    state.commit(MutationTypes.SET_FETCH_FLAG, false);
+                    resolve(res);
+                },
+                reject);
         });
     },
 
@@ -73,6 +79,10 @@ const mutations = {
         axios.patch(`${host}/sessions/${state.sessionID}`, {
             "drugs": state.favDrugsList
         });
+    },
+
+    [MutationTypes.SET_FETCH_FLAG] (state, flag) {
+        state.isFetchingSearchData = flag;
     },
 
     [MutationTypes.START_SEARCHING] (state) {
@@ -136,6 +146,7 @@ const mutations = {
 
 const state = {
     isSearching: false,
+    isFetchingSearchData: false,
     sessionID: '',
     currentDrug: {},
     foundDrugList: [],

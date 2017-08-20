@@ -7,5 +7,6 @@ export default {
     SET_FOUND_DRUG_LIST : "setFoundDrugList",
     SET_SESSION_ID      : "setSessionID",
     SET_FAV_DRUG_LIST   : "setFavDrugList",
+    SET_FETCH_FLAG      : "setFetchSearchDataFlag",
     START_SEARCHING     : "startSearching"
 }
