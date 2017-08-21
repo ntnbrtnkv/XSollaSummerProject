@@ -11,11 +11,11 @@ const host = `${Config.apiServer.host}:${Config.apiServer.port}`;
 
 const actions = {
     [ActionTypes.SEARCH_DRUG] ({ state }, value) {
-        state.commit(MutationTypes.SET_FETCH_FLAG, true);
+        state.isFetchingSearchData = true;
         return new Promise((resolve, reject) => {
             api.search(value,
                 res => {
-                    state.commit(MutationTypes.SET_FETCH_FLAG, false);
+                    state.isFetchingSearchData = false;
                     resolve(res);
                 },
                 reject);
