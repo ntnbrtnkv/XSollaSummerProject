@@ -1,7 +1,11 @@
 .drug-details {
-    background-color: #E7BC7D;
-    border-color: #86550B;
-    box-shadow: 0 0 2px;
+
+    &__content {
+        background-color: #E7BC7D;
+        border-color: #86550B;
+        box-shadow: 0 0 2px;
+        margin: 4px 0px;
+    }
 
 
     &__cell {

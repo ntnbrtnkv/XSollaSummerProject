@@ -14,7 +14,7 @@
         color: black;
         display: table-row;
         text-decoration: none;
-        transition: background ease-in-out 250ms;
+        transition: background .25s ease-in-out;
 
 
         &:first-child {

@@ -11,12 +11,14 @@
                 Не удалось найти препарат :(
             </h2>
         </div>
+        <ButtonRouter iconClasses="fa fa-arrow-left" text="Назад к списку" href="/"></ButtonRouter>
     </div>
 </template>
 
 <script>
     import MutationTypes from './../../store/mutation-types';
     const Row = () => import('./row');
+    const ButtonRouter = () => import('./../button-router/index');
 
     export default {
         props: [
@@ -24,7 +26,8 @@
         ],
 
         components: {
-            Row
+            Row,
+            ButtonRouter
         },
 
         computed: {

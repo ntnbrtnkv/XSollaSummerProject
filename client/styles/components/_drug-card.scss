@@ -10,8 +10,7 @@
     flex: 1 1 $card-width;
     justify-content: center;
     margin: 8px;
-    transition: background ease-in-out 250ms;
-    transition: box-shadow 250ms ease-in-out;
+    transition: all .25s ease-in-out;
     user-select: none;
 
     &_fresh {
