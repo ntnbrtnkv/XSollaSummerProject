@@ -7,7 +7,12 @@ import Config from "./../../config.json";
 
 Vue.use(Vuex);
 
-const host = `${Config.apiServer.host}:${Config.apiServer.port}`;
+let host;
+if (Config.hasOwnProperty('apiServer')) {
+    host = `${Config.apiServer.host}:${Config.apiServer.port}`;
+} else {
+    host = '';
+}
 
 const actions = {
     [ActionTypes.SEARCH_DRUG] ({ state }, value) {
